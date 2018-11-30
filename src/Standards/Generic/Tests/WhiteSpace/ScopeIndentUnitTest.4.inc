@@ -1,0 +1,8 @@
+phpcs:set Generic.Arrays.ArrayIndent indent 4
+phpcs:set Generic.WhiteSpace.ScopeIndent exact true
+phpcs:set Generic.WhiteSpace.ScopeIndent tabIndent false
+<?php
+$shortArray = [
+"hello",
+    "world"
+];
