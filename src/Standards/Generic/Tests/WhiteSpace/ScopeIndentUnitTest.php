@@ -82,6 +82,12 @@ class ScopeIndentUnitTest extends AbstractSniffUnitTest
             ];
         }
 
+        if ($testFile === 'ScopeIndentUnitTest.4.inc') {
+            return [
+                6  => 1,
+            ];
+        }
+
         return [
             7    => 1,
             10   => 1,
