@@ -924,6 +924,19 @@ class ScopeIndentSniff implements Sniff
                 continue;
             }
 
+            // Completely skip Short array as the indent is handled by other rule
+            // "Generic.Arrays.ArrayIndent"
+            if($tokens[$i]['code'] === T_OPEN_SHORT_ARRAY){
+              $depth = 1;
+              $shortArrayDelimiters = [T_OPEN_SHORT_ARRAY,T_CLOSE_SHORT_ARRAY];
+              do {
+                $i = $phpcsFile->findNext($shortArrayDelimiters, ($i + 1));
+                $nestedArray = $tokens[$i]['code'] === T_OPEN_SHORT_ARRAY;
+                $depth = $nestedArray ? $depth+1 : $depth-1;
+              } while ($depth > 0);
+              continue;
+            }
+
             // Completely skip multi-line strings as the indent is a part of the
             // content itself.
             if ($tokens[$i]['code'] === T_CONSTANT_ENCAPSED_STRING
